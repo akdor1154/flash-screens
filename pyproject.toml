@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "flash-screens"
+version = "0.1.0"
+description = ""
+authors = ["Jarrad Whitaker <jwhitaker 📧 swift-nav.com>"]
+#readme = "README.md"
+packages = [{include = "flash_screens.py"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+screen-brightness-control = "^0.16.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+flash-screens = "flash_screens:main"
