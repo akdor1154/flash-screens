@@ -21,6 +21,8 @@ def reset():
     for i, b in enumerate(bb):
         if b is None:
             continue
+        # do it twice.. monitor might be in standby, first one might wake it up?
+        sbc.set_brightness(b, i, method=DDCUTIL)
         sbc.set_brightness(b, i, method=DDCUTIL)
 
 def main():
