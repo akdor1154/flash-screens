@@ -200,16 +200,15 @@ class SessionType(Enum):
 
 
 import sys
+import subprocess
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--event", choices=[x.value for x in EventType], nargs="?")
+parser.add_argument("--session-type", choices=[x.value for x in SessionType], nargs="?")
 
 
 def main():
-	import argparse
-
-	parser = argparse.ArgumentParser()
-	parser.add_argument("--event", choices=[x.value for x in EventType], nargs="?")
-	parser.add_argument(
-		"--session-type", choices=[x.value for x in SessionType], nargs="?"
-	)
 	args = parser.parse_args()
 
 	if args.event is None and args.session_type is None:
@@ -228,3 +227,21 @@ def main():
 		return flash()
 
 	print(f"doing nothing for {args.event=}, {args.session_type=}")
+
+
+def tomate_helper():
+	args = parser.parse_args()
+	subprocess.run(
+		["flash-screens", "--event", args.event, "--session-type", args.session_type],
+		check=True,
+	)
+	subprocess.run(
+		[
+			"what-are-you-doing",
+			"--event",
+			args.event,
+			"--session-type",
+			args.session_type,
+		],
+		check=True,
+	)

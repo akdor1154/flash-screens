@@ -16,3 +16,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 flash-screens = "flash_screens:main"
+tomate-helper = "flash_screens:tomate_helper"
